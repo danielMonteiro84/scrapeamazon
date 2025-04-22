@@ -41,8 +41,8 @@ Este é um projeto simples que faz o scraping da Amazon para buscar produtos com
 1. **Clone o repositório**:
 
    ```bash
-   git clone https://github.com/seu-usuario/scraper-amazon.git
-   cd scraper-amazon/backend
+   git clone https://github.com/danielMonteiro84/scrapeamazon
+   cd scraperamazon
 
    ```
 
