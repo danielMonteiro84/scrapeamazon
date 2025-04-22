@@ -1,13 +1,19 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
+    <title>Scraper Amazon</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.js"></script>
+    <div class="container">
+      <h1>Busca de produtos Amazon</h1>
+      <input type="text" id="keyword" placeholder="Digite o nome do produto" />
+      <button id="scrapeButton">Pesquisar</button>
+      <div id="results"></div>
+    </div>
+
+    <script src="main.js"></script>
   </body>
 </html>
