@@ -2,6 +2,9 @@ const express = require("express");
 const axios = require("axios");
 const { JSDOM } = require("jsdom");
 const app = express();
+const cors = require("cors");
+
+app.use(cors());
 
 const PORT = 3000;
 

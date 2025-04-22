@@ -1,24 +1,35 @@
-import './style.css'
-import javascriptLogo from './javascript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.js'
+document.getElementById("scrapeButton").addEventListener("click", async () => {
+  const keyword = document.getElementById("keyword").value;
+  if (!keyword) {
+    alert("Por favor, insira um termo de busca!");
+    return;
+  }
 
-document.querySelector('#app').innerHTML = `
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-      <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-    </a>
-    <h1>Hello Vite!</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
-  </div>
-`
+  try {
+    const response = await fetch(
+      `http://localhost:3000/api/scrape?keyword=${keyword}`
+    );
 
-setupCounter(document.querySelector('#counter'))
+    const data = await response.json();
+    const resultsDiv = document.getElementById("results");
+    resultsDiv.innerHTML = ""; // Limpar resultados anteriores
+
+    if (data.length === 0) {
+      resultsDiv.innerHTML = "Nenhum produto encontrado!";
+    } else {
+      data.forEach((product) => {
+        const productDiv = document.createElement("div");
+        productDiv.className = "product";
+        productDiv.innerHTML = `
+            <img src="${product.imageUrl}" alt="${product.title}" />
+            <h3>${product.title}</h3>
+            <p>Avaliação: ${product.rating}</p>
+            <p>Reviews: ${product.reviews}</p>
+          `;
+        resultsDiv.appendChild(productDiv);
+      });
+    }
+  } catch (error) {
+    alert("Erro ao buscar produtos.");
+  }
+});
