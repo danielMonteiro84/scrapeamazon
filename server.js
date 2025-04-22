@@ -31,7 +31,9 @@ app.get("/api/scrape", async (req, res) => {
     productElements.forEach((item) => {
       const titleElement =
         item.querySelector("h2 a span") || item.querySelector(".a-text-normal");
-      if (!titleElement) return;
+      const imageElement = item.querySelector(".s-image");
+
+      if (!titleElement || !imageElement) return;
 
       const title = titleElement.textContent;
       const rating =

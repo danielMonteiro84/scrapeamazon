@@ -15,7 +15,7 @@ document.getElementById("scrapeButton").addEventListener("click", async () => {
 
     const data = await response.json();
     const resultsDiv = document.getElementById("results");
-    resultsDiv.innerHTML = ""; // Limpar resultados anteriores
+    resultsDiv.innerHTML = "";
 
     if (data.length === 0) {
       resultsDiv.innerHTML = "Nenhum produto encontrado!";
