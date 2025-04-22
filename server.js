@@ -24,13 +24,16 @@ app.get("/api/scrape", async (req, res) => {
       ".s-main-slot .s-result-item"
     );
     productElements.forEach((item) => {
-      const title = item.querySelector("h2 a span")?.textContent || "No title";
+      const titleElement =
+        item.querySelector("h2 a span") || item.querySelector(".a-text-normal");
+      if (!titleElement) return;
+
+      const title = titleElement.textContent;
       const rating =
         item.querySelector(".a-icon-alt")?.textContent || "No rating";
       const reviews =
         item.querySelector(".a-size-base")?.textContent || "No reviews";
       const imageUrl = item.querySelector(".s-image")?.src || "No image";
-
       products.push({ title, rating, reviews, imageUrl });
     });
 
