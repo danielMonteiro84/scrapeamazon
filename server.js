@@ -15,7 +15,12 @@ app.get("/api/scrape", async (req, res) => {
   }
 
   try {
-    const response = await axios.get(`https://www.amazon.com/s?k=${keyword}`);
+    const response = await axios.get(`https://www.amazon.com/s?k=${keyword}`, {
+      headers: {
+        "User-Agent":
+          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36",
+      },
+    });
 
     const dom = new JSDOM(response.data);
     const products = [];
@@ -39,6 +44,7 @@ app.get("/api/scrape", async (req, res) => {
 
     res.json(products);
   } catch (error) {
+    console.error(error);
     res.status(500).json({ error: "Failed to scrape data" });
   }
 });

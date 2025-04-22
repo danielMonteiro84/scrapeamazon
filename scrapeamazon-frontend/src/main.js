@@ -1,5 +1,8 @@
 document.getElementById("scrapeButton").addEventListener("click", async () => {
-  const keyword = document.getElementById("keyword").value;
+  const keyword = document.getElementById("keyword").value.trim();
+  const resultDiv = document.getElementById("results");
+  resultDiv.innerHTML = ";";
+
   if (!keyword) {
     alert("Por favor, insira um termo de busca!");
     return;
